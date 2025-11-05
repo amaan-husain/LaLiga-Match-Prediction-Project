@@ -223,7 +223,6 @@ jupyter notebook 01_data_collection.ipynb
 📧 amaanh247@gmail.com  
 🔗 [LinkedIn](https://www.linkedin.com/in/amaan-husain-ab2356118/) • [GitHub](https://github.com/amaan-husain)
 
-*Undergraduate student passionate about applying machine learning to real-world problems*
 
 ---
 
