@@ -1,71 +1,72 @@
-# ⚽ La Liga Match Outcome Prediction
+#  La Liga Match Outcome Prediction
 
 ### Predicting football match results using machine learning and team performance statistics
 
-This project applies **data science and machine learning** to predict match outcomes (Win/Draw/Loss) in Spain’s *La Liga* using multi-season team statistics from FBref.  
-It demonstrates end-to-end proficiency in **data collection, cleaning, feature engineering, and predictive modeling** — skills relevant to both **computer science** and **data analytics research**.
 
----
----
+This is a **Data Science and Machine Learning** project to predict football match results (Win / Lose / Draw). In this project, we use the Random Forest algorithm. We focus on **LaLiga** match data spanning across 4 seasons (21/22 - 24/25). We made use of various **team statistics** (like xG, long pass completion, etc.) and **contextual variables** (like venue, opponent, etc.). This project takes place in 3 stages : data collection, cleaning the data and making the model. The model managed to achieve an accuracy score of 47.7%. 
 
-## 📋 Table of Contents
-- [Overview](#-overview)
-- [Dataset](#-dataset)
-- [Methodology](#-methodology)
-- [Results](#-results)
-- [Key Findings](#-key-findings)
-- [Repository Structure](#-repository-structure)
-- [Installation & Usage](#-installation--usage)
-- [Technologies](#-technologies)
-- [Future Improvements](#-future-improvements)
-- [Author](#-author)
-- [License](#-license)
+The data collection part was especially challenging because of the ever increasing protection against web scraping, but the soccerdata package came to the rescue. I learned many lessons, having completed this project, which I will surely apply in all my future projects. **Thank you** for taking the time to check out the project!
 
 
 ---
 
-## 📘 Overview
+##  Table of Contents
+- [Overview](#overview)
+- [Dataset](#dataset)
+- [Methodology](#methodology)
+- [Results](#results)
+- [Repository Structure](#repository-structure)
+- [Installation & Usage](#installation--usage)
+- [Technologies](#technologies)
+- [Future Improvements](#future-improvements)
+- [Author](#author)
+- [License](#license)
+
+
+---
+
+## Overview
 
 **Goal**: Predict match outcomes in La Liga using historical team performance data.
 
 **Approach**: Three-stage machine learning pipeline:
-1. **Data Collection** – Multi-season match statistics via `soccerdata` package
-2. **Data Cleaning** – Feature engineering with rolling averages and encoding
-3. **Modeling** – Random Forest classification with temporal validation
+1. **Data Collection** 
+2. **Data Cleaning** 
+3. **Modeling** 
 
-**Key Achievement**: 47.7% accuracy on 3-class prediction (27% above baseline), with possession and passing metrics emerging as strongest predictors.
+**Key Achievement**: 47.7% accuracy on 3-class prediction (26.7% above baseline), with possession and passing metrics emerging as strongest predictors.
 
 ---
 
-## 📊 Dataset
+## Dataset
 
 - **Source**: FBref.com via `soccerdata` Python package
 - **Scope**: La Liga seasons 2021–22 through 2024–25
 - **Size**: 3,040 matches
 - **Features**: 90+ match-level statistics across five categories:
-  - Fixtures (date, venue, opponent, result)
-  - Shooting (shots, xG, conversion rates)
-  - Passing (completion %, distance, progression)
-  - Possession (touches, carries, dribbles)
-  - Goal/Shot Creation (key passes, assists, xAG)
+  - Fixtures (date, venue, opponent, result, etc.)
+  - Shooting (shots, xG, conversion rates, etc.)
+  - Passing (completion %, distance, progression, etc.)
+  - Possession (touches, carries, dribbles, etc.)
+  - Goal/Shot Creation (key passes, assists, xAG, etc.)
 
 ---
 
-## 🧠 Methodology
+## Methodology
 
-### 1️⃣ Data Collection (`01_data_collection.ipynb`)
+###  Data Collection (`01_data_collection.ipynb`)
 
 Scraped match-level statistics using the `soccerdata` package:
-- Extracted five separate datasets per match
-- Flattened multi-index structures for downstream processing
+- Extracted five datasets : fixtures, shooting, goal and shot creation, passing and possession
+- Reset the indices of the datasets, so that we get the "team" column (along with some other columns)
 - Exported raw CSVs for reproducibility
 
-### 2️⃣ Data Cleaning & Feature Engineering (`02_data_cleaning.ipynb`)
+###  Data Cleaning & Feature Engineering (`02_data_cleaning.ipynb`)
 
 **Preprocessing**:
-- Standardized multi-level column headers
-- Merged five datasets into unified match records
-- Removed columns with >90% missing values
+- Fixed the column names
+- Merged five datasets into 1 dataset
+- Removed columns with missing values
 - Converted data types (datetime, numeric, categorical)
 
 **Feature Engineering**:
@@ -77,7 +78,7 @@ Scraped match-level statistics using the `soccerdata` package:
 
 **Rationale**: Rolling averages capture recent team form without data leakage, using `closed='left'` to exclude the current match from calculations.
 
-### 3️⃣ Model Development (`03_model_development.ipynb`)
+###  Model Development (`03_model_development.ipynb`)
 
 **Algorithm**: Random Forest Classifier
 - 100 trees, max depth 15
@@ -100,7 +101,7 @@ Scraped match-level statistics using the `soccerdata` package:
 
 ---
 
-## 📊 Results
+## Results
 
 | Metric | Value |
 |:-------|:------|
@@ -118,7 +119,7 @@ Scraped match-level statistics using the `soccerdata` package:
 **Macro Avg:** Precision 0.44 • Recall 0.43 • F1 0.40  
 **Weighted Avg:** Precision 0.45 • Recall 0.48 • F1 0.44  
 
-✅ The Random Forest model **outperformed the baseline by 26.7%**, showing that team-level rolling averages contain predictive signal despite the randomness in sports outcomes.
+ The Random Forest model **outperformed the baseline by 26.7%**, showing that team-level rolling averages contain predictive signal despite the randomness in sports outcomes.
 
 ---
 
@@ -136,16 +137,9 @@ Scraped match-level statistics using the `soccerdata` package:
 10. Take-ons tackled % (rolling average)  
 
 ---
-### Insights
-
- **Recent form matters**: Rolling averages of team statistics are highly predictive  
- **Draws are unpredictable**: Low recall (7%) reflects inherent randomness in tight matches  
- **xG outperforms actual goals**: Expected goals capture quality of chances better than raw goal counts  
-
----
 
 
-## 📁 Repository Structure
+## Repository Structure
 ```
 LaLiga-Match-Prediction-Project/
 ├── 01_data_collection.ipynb    # Web scraping and data gathering
@@ -159,7 +153,7 @@ LaLiga-Match-Prediction-Project/
 
 ---
 
-## 🚀 Installation & Usage
+## Installation & Usage
 
 ### Prerequisites
 - Python 3.11
@@ -188,7 +182,7 @@ jupyter notebook 01_data_collection.ipynb
 
 ---
 
-## 🛠️ Technologies
+## Technologies
 
 | Category | Tools |
 |----------|-------|
@@ -199,9 +193,9 @@ jupyter notebook 01_data_collection.ipynb
 | **Development** | Jupyter Notebooks, Google Colab |
 
 ---  
----
 
-## 🔮 Future Improvements
+
+## Future Improvements
 
 ### Short-term
 - [ ] Address class imbalance using SMOTE or class weights
@@ -217,7 +211,7 @@ jupyter notebook 01_data_collection.ipynb
 
 ---
 
-## 👤 Author
+## Author
 
 **Amaan Husain**  
 📧 amaanh247@gmail.com  
@@ -226,16 +220,17 @@ jupyter notebook 01_data_collection.ipynb
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - Data sourced from [FBref.com](https://fbref.com)
 - Built with the [`soccerdata`](https://github.com/probberechts/soccerdata) Python package
-- Inspired by sports analytics research in predictive modeling
 
+### THANK YOU FOR CHECKING THE PROJECT OUT! :smile:
 ---
+
