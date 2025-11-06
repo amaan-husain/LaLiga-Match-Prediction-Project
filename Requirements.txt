@@ -1,0 +1,15 @@
+# Python 3.11 required
+
+# Data Collection
+soccerdata==1.8.7
+
+# Data Processing
+pandas==2.2.2
+numpy==2.0.2
+
+# Machine Learning
+scikit-learn==1.6.0
+
+# Jupyter Environment
+jupyter==1.1.1
+ipykernel==6.29.5
