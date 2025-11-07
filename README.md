@@ -153,11 +153,15 @@ LaLiga-Match-Prediction-Project/
 
 ## Installation & Usage
 
+To reproduce the results or explore the notebooks, follow the setup instructions below.
+
 ### Prerequisites
 - **Python 3.11**
 - **Jupyter Notebook** or **Google Colab**
 
-### Option 1: Run Locally with Jupyter Notebook (Recommended)
+### Option 1: Run Locally with Jupyter Notebook
+###  Recommended: Follow the steps and Run in a Virtual Environment
+>  Open and run all commands in **Anaconda Prompt**  
 
 1. **Clone the repository**
 ```bash
@@ -165,9 +169,15 @@ git clone https://github.com/amaan-husain/LaLiga-Match-Prediction-Project.git
 cd LaLiga-Match-Prediction-Project
 ```
 
-2. **Install dependencies**
+2. Create and activate a virtual environment
 ```bash
-pip install --upgrade pip
+python -m venv venv
+venv\Scripts\activate
+```
+
+3. **Install dependencies**
+```bash
+python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
@@ -177,7 +187,7 @@ jupyter notebook
 ```
 
 4. **Run notebooks sequentially**
-   - Open and run `01_Data_Collection.ipynb` (takes ~10-15 minutes for web scraping)
+   - Open and run `01_Data_Collection.ipynb` (takes ~5-10 minutes for web scraping)
    - Then run `02_Cleaning.ipynb` (creates the merged dataset)
    - Finally run `03_Model.ipynb` (trains and evaluates the model)
 
@@ -195,7 +205,7 @@ jupyter notebook
 
 ###  Important Notes
 
-- **Data collection takes time**: The first notebook scrapes data from FBref and may take 10-15 minutes
+- **Data collection takes time**: The first notebook scrapes data from FBref and may take 5-10 minutes
 - **CSV files not included**: You must run `01_Data_Collection.ipynb` to generate the raw data files
 - **Run in sequence**: Each notebook depends on outputs from the previous one
 ---
