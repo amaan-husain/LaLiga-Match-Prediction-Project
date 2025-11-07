@@ -1,7 +1,5 @@
 #  La Liga Match Outcome Prediction
 
-### Predicting football match results using machine learning and team performance statistics
-
 
 This is a **Data Science and Machine Learning** project to predict football match results (Win / Lose / Draw). In this project, we use the Random Forest algorithm. We focus on **LaLiga** match data spanning across 4 seasons (21/22 - 24/25). We made use of various **team statistics** (like xG, long pass completion, etc.) and **contextual variables** (like venue, opponent, etc.). This project takes place in 3 stages : data collection, cleaning the data and making the model. The model managed to achieve an accuracy score of 47.7%. 
 
@@ -54,14 +52,14 @@ The data collection part was especially challenging because of the ever increasi
 
 ## Methodology
 
-###  Data Collection (`01_data_collection.ipynb`)
+###  Data Collection (`01_Data_Collection.ipynb`)
 
 Scraped match-level statistics using the `soccerdata` package:
 - Extracted five datasets : fixtures, shooting, goal and shot creation, passing and possession
 - Reset the indices of the datasets, so that we get the "team" column (along with some other columns)
 - Exported raw CSVs for reproducibility
 
-###  Data Cleaning & Feature Engineering (`02_data_cleaning.ipynb`)
+###  Data Cleaning & Feature Engineering (`02_Cleaning.ipynb`)
 
 **Preprocessing**:
 - Fixed the column names
@@ -78,7 +76,7 @@ Scraped match-level statistics using the `soccerdata` package:
 
 **Rationale**: Rolling averages capture recent team form without data leakage, using `closed='left'` to exclude the current match from calculations.
 
-###  Model Development (`03_model_development.ipynb`)
+###  Model Development (`03_Model.ipynb`)
 
 **Algorithm**: Random Forest Classifier
 - 100 trees, max depth 15
@@ -123,7 +121,7 @@ Scraped match-level statistics using the `soccerdata` package:
 
 ---
 
-### 🔍 Feature Importance
+### Feature Importance
 **Top 10 Most Influential Features:**
 1. Venue code  
 2. Opponent code  
@@ -142,9 +140,9 @@ Scraped match-level statistics using the `soccerdata` package:
 ## Repository Structure
 ```
 LaLiga-Match-Prediction-Project/
-├── 01_data_collection.ipynb    # Web scraping and data gathering
-├── 02_data_cleaning.ipynb      # Preprocessing and feature engineering
-├── 03_model_development.ipynb  # Model training and evaluation
+├── 01_Data_Collection.ipynb    # Web scraping and data gathering
+├── 02_Cleaning.ipynb      # Preprocessing and feature engineering
+├── 03_Model.ipynb  # Model training and evaluation
 ├── requirements.txt            # Python dependencies
 ├── .gitignore                  # Git exclusions
 ├── LICENSE                     # MIT License
@@ -156,10 +154,10 @@ LaLiga-Match-Prediction-Project/
 ## Installation & Usage
 
 ### Prerequisites
-- Python 3.11
-- Jupyter Notebook or Google Colab
+- **Python 3.11**
+- **Jupyter Notebook** or **Google Colab**
 
-### Setup
+### Option 1: Run Locally with Jupyter Notebook (Recommended)
 
 1. **Clone the repository**
 ```bash
@@ -169,24 +167,44 @@ cd LaLiga-Match-Prediction-Project
 
 2. **Install dependencies**
 ```bash
+pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-3. **Run notebooks in order**
+3. **Launch Jupyter Notebook**
 ```bash
-jupyter notebook 01_data_collection.ipynb
-# Follow through 02 and 03 sequentially
+jupyter notebook
 ```
 
-**Note**: Data collection may take 10-15 minutes due to web scraping rate limits.
+4. **Run notebooks sequentially**
+   - Open and run `01_Data_Collection.ipynb` (takes ~10-15 minutes for web scraping)
+   - Then run `02_Cleaning.ipynb` (creates the merged dataset)
+   - Finally run `03_Model.ipynb` (trains and evaluates the model)
 
+### Option 2: Run on Google Colab
+
+1. **Upload notebooks to Google Drive** or open directly from GitHub
+
+2. **For `01_Data_Collection.ipynb`**: 
+   - Run the first and second cell: `!pip install lxml` & `!pip install soccerdata`
+   - Then run the rest of the notebook
+
+3. **Download the generated CSV files** and upload them for the next notebooks
+
+4. **Run notebooks in order**: 01 → 02 → 03
+
+###  Important Notes
+
+- **Data collection takes time**: The first notebook scrapes data from FBref and may take 10-15 minutes
+- **CSV files not included**: You must run `01_Data_Collection.ipynb` to generate the raw data files
+- **Run in sequence**: Each notebook depends on outputs from the previous one
 ---
 
 ## Technologies
 
 | Category | Tools |
 |----------|-------|
-| **Language** | Python 3.8+ |
+| **Language** | Python 3.11 |
 | **Data Collection** | `soccerdata` |
 | **Data Processing** | `pandas`, `numpy` |
 | **Machine Learning** | `scikit-learn` (Random Forest) |
